@@ -12,6 +12,7 @@ function MessageCard({ isActive }) {
   const curtainLeftRef = useRef(null);
   const curtainRightRef = useRef(null);
   const messageContentRef = useRef(null);
+  const prevIsActive = useRef(isActive);
 
   const recipientName = "TANU";
   const senderName = "AMIT";
@@ -30,8 +31,6 @@ I hope this little digital surprise brings a huge smile to your face. Thank you 
       return () => clearTimeout(timer);
     }
   }, [isActive]);
-
-  const prevIsActive = useRef(isActive);
 
   useEffect(() => {
     if (!isActive && prevIsActive.current) {
