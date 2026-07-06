@@ -11,15 +11,14 @@ function Gallery({ isActive }) {
   const lightboxImgRef = useRef(null);
 
   // Absolute root paths for files inside the public folder
+// Mapped exactly to your subfolder path
   const photos = [
-    { src: "/pic1.jpg.png", alt: "Our Memory 1" },
-    { src: "/pic2.jpg.jpg", alt: "Our Memory 2" },
-    { src: "/pic3.jpg.png", alt: "Our Memory 3" },
-    { src: "/pic4.jpg.jpg", alt: "Our Memory 4" },
-    { src: "/pic5.jpg.jpg", alt: "Our Memory 5" },
+    { src: "/images/pic1.jpg.png", alt: "Our Memory 1" },
+    { src: "/images/pic2.jpg.jpg", alt: "Our Memory 2" },
+    { src: "/images/pic3.jpg.png", alt: "Our Memory 3" },
+    { src: "/images/pic4.jpg.jpg", alt: "Our Memory 4" },
+    { src: "/images/pic5.jpg.jpg", alt: "Our Memory 5" },
   ];
-
-  // Reveal photos with GSAP when page becomes active
   useEffect(() => {
     if (isActive && !photosRevealed) {
       setTimeout(() => setPhotosRevealed(true), 10);
