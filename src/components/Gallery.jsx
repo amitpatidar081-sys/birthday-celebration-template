@@ -10,15 +10,16 @@ function Gallery({ isActive }) {
   const photosRef = useRef([]);
   const lightboxImgRef = useRef(null);
 
-  // Mapped exactly to your files with their double extensions
-// Mapped exactly with relative dots
+  // Absolute root paths for files inside the public folder
   const photos = [
-    { src: "./pic1.jpg.png", alt: "Our Memory 1" },
-    { src: "./pic2.jpg.jpg", alt: "Our Memory 2" },
-    { src: "./pic3.jpg.png", alt: "Our Memory 3" },
-    { src: "./pic4.jpg.jpg", alt: "Our Memory 4" },
-    { src: "./pic5.jpg.jpg", alt: "Our Memory 5" },
+    { src: "/pic1.jpg.png", alt: "Our Memory 1" },
+    { src: "/pic2.jpg.jpg", alt: "Our Memory 2" },
+    { src: "/pic3.jpg.png", alt: "Our Memory 3" },
+    { src: "/pic4.jpg.jpg", alt: "Our Memory 4" },
+    { src: "/pic5.jpg.jpg", alt: "Our Memory 5" },
   ];
+
+  // Reveal photos with GSAP when page becomes active
   useEffect(() => {
     if (isActive && !photosRevealed) {
       setTimeout(() => setPhotosRevealed(true), 10);
@@ -136,6 +137,14 @@ function Gallery({ isActive }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [lightboxOpen, showNext, showPrev, closeLightbox]);
 
+  // Handle path environment fallback cleanly if absolute matching acts up
+  const handleImageError = (e, filename) => {
+    if (e.target.src && !e.target.dataset.triedFallback) {
+      e.target.dataset.triedFallback = "true";
+      e.target.src = window.location.origin + filename;
+    }
+  };
+
   return (
     <section className="gallery">
       <h2>📸 Our Beautiful Memories</h2>
@@ -147,6 +156,7 @@ function Gallery({ isActive }) {
             src={photo.src}
             alt={photo.alt}
             onClick={() => openLightbox(index)}
+            onError={(e) => handleImageError(e, photo.src)}
             loading="lazy"
           />
         ))}
@@ -159,6 +169,7 @@ function Gallery({ isActive }) {
             src={photos[currentIndex].src}
             alt={photos[currentIndex].alt}
             onClick={(e) => e.stopPropagation()}
+            onError={(e) => handleImageError(e, photos[currentIndex].src)}
           />
           <button
             className="lightbox-close"
