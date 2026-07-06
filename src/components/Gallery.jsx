@@ -10,13 +10,13 @@ function Gallery({ isActive }) {
   const photosRef = useRef([]);
   const lightboxImgRef = useRef(null);
 
-const photos = [
-    { src: "/images/pic1.jpeg", alt: "Memory 1" },
-    { src: "/images/IMG-20260624-WA0002.jpg", alt: "Memory 2" },
-    { src: "/images/IMG-20260205-WA0000.jpg", alt: "Memory 3" },
-    { src: "/images/IMG-20260624-WA0003.jpg", alt: "Memory 4" },
-    { src: "/images/1772620495562.png", alt: "Memory 5" },
-    { src: "/images/IMG-20260420-WA0008.jpg", alt: "Memory 6" },
+  // Mapped exactly to your files with their double extensions
+  const photos = [
+    { src: "/pic1.jpg.png", alt: "Our Memory 1" },
+    { src: "/pic2.jpg.jpg", alt: "Our Memory 2" },
+    { src: "/pic3.jpg.png", alt: "Our Memory 3" },
+    { src: "/pic4.jpg.jpg", alt: "Our Memory 4" },
+    { src: "/pic5.jpg.jpg", alt: "Our Memory 5" },
   ];
 
   // Reveal photos with GSAP when page becomes active
