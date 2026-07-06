@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Heart } from 'lucide-react';
 import gsap from 'gsap';
 import './MessageCard.css';
 
@@ -102,8 +101,8 @@ I hope this little digital surprise brings a huge smile to your face. Thank you 
       <div ref={cardRef} className={`birthday-card ${isOpen ? 'open' : ''}`}>
         <div className="card-inside" ref={messageContentRef}>
           <h2 className="recipient-title">Dear {recipientName},</h2>
-          <div className="heart-divider">
-            <Heart className="heart-icon-filled" fill="#ff4b5c" color="#ff4b5c" />
+          <div className="heart-divider" style={{ fontSize: '24px', textAlign: 'center', margin: '10px 0' }}>
+            ❤️
           </div>
           <p className="card-message-text">{message}</p>
           <h3 className="sender-signature">With Love, {senderName}</h3>
