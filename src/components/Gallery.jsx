@@ -11,15 +11,14 @@ function Gallery({ isActive }) {
   const lightboxImgRef = useRef(null);
 
   // Mapped exactly to your files with their double extensions
+// Mapped exactly with relative dots
   const photos = [
-    { src: "/pic1.jpg.png", alt: "Our Memory 1" },
-    { src: "/pic2.jpg.jpg", alt: "Our Memory 2" },
-    { src: "/pic3.jpg.png", alt: "Our Memory 3" },
-    { src: "/pic4.jpg.jpg", alt: "Our Memory 4" },
-    { src: "/pic5.jpg.jpg", alt: "Our Memory 5" },
+    { src: "./pic1.jpg.png", alt: "Our Memory 1" },
+    { src: "./pic2.jpg.jpg", alt: "Our Memory 2" },
+    { src: "./pic3.jpg.png", alt: "Our Memory 3" },
+    { src: "./pic4.jpg.jpg", alt: "Our Memory 4" },
+    { src: "./pic5.jpg.jpg", alt: "Our Memory 5" },
   ];
-
-  // Reveal photos with GSAP when page becomes active
   useEffect(() => {
     if (isActive && !photosRevealed) {
       setTimeout(() => setPhotosRevealed(true), 10);
